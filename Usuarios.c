@@ -1,5 +1,5 @@
-#include<stdio.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 
@@ -19,10 +19,10 @@ struct U
   int i;
 
 
-int main (){
+/*int main (){
   do
   {
-    int op;
+    int op=0;
     system("cls");
     printf("¿Que deseas hacer?\n");
     printf("1. Agregar usuario nuevo\n");
@@ -41,15 +41,15 @@ int main (){
         printf("Adios");
         break;
       default:
-        system("cls");
-        printf("Opcion no valida");
+        //system("cls");
+        //printf("Opcion no valida");
         break;
     }
     printf("\n¿Quieres Salir? 1=SI/0=NO \n");
     scanf("%d", &i);
   }while (i==0);
   return 0;
-}
+}*/
 
 void agregar()
 {
