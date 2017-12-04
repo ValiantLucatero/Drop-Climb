@@ -9,6 +9,8 @@ void rellenar();
 void imprimir();
 int dados();
 char tablero[10][10];
+int serp(int x);
+int esc(int x);
 
 int main()
 {
@@ -78,21 +80,25 @@ void rellenar(){
 void imprimir(){
 	int band=1;
 	int i, j, n, pos=0;
-	while(band==1)
-	{
-        pos+=dados();
-        if(pos>=100){
-            band=0;
-            printf("\nGanaste!\n");
-        }
-
-        else{
+	while(band==1){
+		int dad=dados();
+		printf("\nPosicion original: %d",pos);
+		printf("\nDado: %d\n",dad);
+		pos+=dad;
+		if(pos>=100){
+		    band=0;
+		    printf("\nGanaste!\n");
+        	}
+	
+	        else{
 			printf("Estas en %d\n",pos);
-	        n=pos;
-	        int m=0;
-	        while(n>10){
-	            n-=10;
-	            m++;
+			pos=serp(pos);
+			pos=esc(pos);
+			n=pos;
+			int m=0;
+			while(n>10){
+			    n-=10;
+			    m++;
 	        }
 	        if(n==0){
 	            n=9;m++;
@@ -108,4 +114,111 @@ void imprimir(){
 		getchar();
     rellenar();
 	}
+}
+int serp(int x){
+	if(x==18 || x==22 ||x==36||x==62||x==75||x==78||x==83||x==93||x==96)	
+		printf("\nMala suerte, caíste en una serpiente\n");
+	
+	if (x==18){
+		printf("\nAhora estás en 6\n");
+		return 6;
+	}
+		
+	else if (x==22){
+		printf("\nAhora estás en 2\n");
+		return 2;
+	}
+	else if (x==36){
+		printf("\nAhora estás en 20\n");
+		return 20;
+	}
+		
+	else if (x==62){
+		printf("\nAhora estás en 14\n");
+		return 14;
+	}
+		
+	else if (x==75){
+		printf("\nAhora estás en 30\n");	
+		return 30;
+	}
+		
+	
+	else if (x==78){
+		printf("\nAhora estás en 49\n");
+		return 49;
+	}
+		
+	else if (x==83){
+		printf("\nAhora estás en 8\n");
+		return 8;
+	}
+		
+	else if (x==93){
+		printf("\nAhora estás en 40\n");
+		return 40;
+	}
+	else if (x==93){
+		printf("\nAhora estás en 69 UwU\n");
+		return 40;
+	}
+		
+	else
+		return x;
+		
+}
+
+int esc(int x){
+	if(x==11 || x==17 ||x==19||x==21||x==26||x==43||x==52||x==70||x==74)	
+		printf("\nBuena suerte, subiste por una escalera\n");
+	
+	if (x==11){
+		printf("\nAhora estás en 39\n");
+		return 39;
+	}
+		
+	else if (x==17){
+		printf("\nAhora estás en 67\n");
+		return 67;
+	}
+	else if (x==19){
+		printf("\nAhora estás en 45\n");
+		return 45;
+	}
+		
+	else if (x==21){
+		printf("\nAhora estás en 56\n");
+		return 56;
+	}
+		
+	else if (x==26){
+		printf("\nAhora estás en 50\n");	
+		return 50;
+	}
+		
+	
+	else if (x==43){
+		printf("\nAhora estás en 84\n");
+		return 84;
+	}
+		
+		
+	else if (x==52){
+		printf("\nAhora estás en 76\n");
+		return 76;
+	}
+	
+	else if (x==70){
+		printf("\nAhora estás en 92\n");
+		return 92;
+	}
+	
+	else if (x==74){
+		printf("\nAhora estás en 100\n");
+		return 100;
+	}
+		
+	else
+		return x;
+		
 }
