@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+#include <unistd.h>
 
 
 struct U
@@ -34,8 +34,8 @@ void agregar()
 	  fprintf(ap," %d %d %d\n",Us.JJ, Us.JG,  Us.JP );
 	  fclose(ap);
   }
-  printf("\nUsuario Generado con exito!\n");
-  system("pause");
+  printf("\nUsuario Generado con exito!\nPresiona enter para continuar...\n");
+  getchar();
   //system("cls"); //windows
   system("clear"); //unix
 }
@@ -45,27 +45,35 @@ void find()
   int b=0;
   //system("cls"); //windows
   system("clear"); //unix
+  fflush(stdin);
+  if(access("usuarios.txt",F_OK)!=-1)
+  {
   FILE *ap;
   ap=fopen("usuarios.txt","rt");
-  printf("A quien buscas :  ");
-  fflush(stdin);
-  //gets(nomb); //está en desuso
-  scanf("%s",nomb);
-  fflush(stdin);
-  while(!feof(ap))
-  {
-    fscanf(ap,"%s",&Us.nom);
-    if(strcmp(nomb,Us.nom)==0)
+    printf("A quien buscas :  ");
+    //gets(nomb); //está en desuso
+    scanf("%s",nomb);
+    fflush(stdin);
+    while(!feof(ap))
     {
-      fscanf(ap,"%d",&Us.JJ);
-      fscanf(ap,"%d",&Us.JG);
-      fscanf(ap,"%d",&Us.JP);
-      printf("Hola %s, Tienes Juegos jugados %i, ganados %i, perdidos %i  \n",Us.nom,Us.JJ,Us.JG,Us.JP);
-      b=1;
-	    break;
-	  }
-
+      fscanf(ap,"%s",&Us.nom);
+      if(strcmp(nomb,Us.nom)==0)
+      {
+        fscanf(ap,"%d",&Us.JJ);
+        fscanf(ap,"%d",&Us.JG);
+        fscanf(ap,"%d",&Us.JP);
+        printf("Hola %s, Tienes Juegos jugados %i, ganados %i, perdidos %i  \n",Us.nom,Us.JJ,Us.JG,Us.JP);
+        b=1;
+	       break;
+	      }
+    }
+    if(b==0)
+    printf("Usuario no registrado :(\n");
   }
-  if(b==0)
-  printf("Usuario no registrado :(\n");
+  if(access("usuarios.txt",F_OK)==-1)
+  {
+    printf("No hay ningun usuario registrado :( Presiona enter para continuar...");
+  }
+  //system("cls"); //windows
+  system("clear"); //unix
 }

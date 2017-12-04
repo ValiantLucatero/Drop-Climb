@@ -42,7 +42,12 @@ void menuprin(){
 		else if(opc=='2')
 			agregar();
 		else if(opc=='3')
+		{
+			b=0;
 			find();
+			getchar();
+			b=1;
+		}
 		else if(opc=='4')
 			exit(0);
 	}
@@ -73,15 +78,16 @@ void rellenar(){
 void imprimir(){
 	int band=1;
 	int i, j, n, pos=0;
-	while(band==1){
+	while(band==1)
+	{
         pos+=dados();
         if(pos>=100){
             band=0;
-            printf("\n�Ganaste!\n");
+            printf("\nGanaste!\n");
         }
 
         else{
-			printf("Est�s es %d\n",pos);
+			printf("Estas en %d\n",pos);
 	        n=pos;
 	        int m=0;
 	        while(n>10){
@@ -99,7 +105,7 @@ void imprimir(){
     	printf("\n");
     	}
 		}
-	system("pause");
+		getchar();
     rellenar();
 	}
 }
