@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "Usuarios.cpp"
+#include "Usuarios.c"
 
 void menuprin();
 void creditos();
@@ -10,11 +10,12 @@ void imprimir();
 int dados();
 char tablero[10][10];
 
-main()
+int main()
 {
 	srand(time(NULL));
 	creditos();
 	menuprin();
+	return 0;
 }
 
 int dados(){
@@ -25,9 +26,10 @@ int dados(){
 void menuprin(){
 	char opc=' ';
 	int band=1;
-	system("cls");
 	while(band==1)
 	{
+		//system("cls"); //windows
+		system("clear"); //unix
 		fflush(stdin);
 		printf("\nSelecciona una opcion: \n1.-Jugar\n2.-Log in\n3.-Lista de Usuarios\n4.-Salir\n");
 		scanf("%c",&opc);
@@ -36,7 +38,7 @@ void menuprin(){
 			rellenar();
 			imprimir();
 		}
-			
+
 		else if(opc=='2')
 			agregar();
 		else if(opc=='3')
@@ -62,23 +64,24 @@ void rellenar(){
             tablero[i][j]=(9-i)*10+j+1;
         }
     }
-	system("cls");	
+	//system("cls"); //windows
+	system("clear"); //unix
 }
 
-    
+
 
 void imprimir(){
-	bool band=true;
+	int band=1;
 	int i, j, n, pos=0;
-	while(band==true){
+	while(band==1){
         pos+=dados();
         if(pos>=100){
-            band=false;
-            printf("\n¡Ganaste!\n");
-        } 
-        
+            band=0;
+            printf("\nï¿½Ganaste!\n");
+        }
+
         else{
-			printf("Estás es %d\n",pos);
+			printf("Estï¿½s es %d\n",pos);
 	        n=pos;
 	        int m=0;
 	        while(n>10){
@@ -100,4 +103,3 @@ void imprimir(){
     rellenar();
 	}
 }
-
