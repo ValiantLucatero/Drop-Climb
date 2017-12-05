@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <string.h>
 #include "Usuarios.c"
 
 int j=0, p1=0, p2=0, p3=0, p4=0;
@@ -61,31 +62,35 @@ void menuprin(){
 
 void menujug(){
 	int opc;
-	printf("\nCuantos jugadores son?\n1.-Solo Mode (Testeo)\n2.-Dos jugadores\n3.-Tres jugadores\n4.-Cuatro jugadores\n");
+	printf("\nCuantos jugadores son?\n1.-Solo Mode\n2.-Dos jugadores\n3.-Tres jugadores\n4.-Cuatro jugadores\n");
 	scanf("%d",&opc);
-		if(opc==1){
-			printf("\nNombre del jugador 1? ");
-			fflush(stdin);
+		if(opc==1)
+		{
+			printf("Nombre del jugador 1? ");
+			getchar();
 			fgets(n1,256,stdin);
-			fflush(stdin);
+			n1[strcspn(n1, "\n")]=0; //quita el enter del fgets
 			rellenar();
+			p1=0;
 			while(p1<100)
 			{
 				j1();
 				rellenar();
 			}
-			printf("j1 es el ganador\nY tambien el perdedor :(");
+			printf("%s es el ganador! Y tambien el perdedor :,(",n1);
 			getchar();
 		}
 		else if(opc==2){
-			printf("\nNombre del jugador 1? ");
-			fflush(stdin);
+			printf("Nombre del jugador 1? ");
+			getchar();
 			fgets(n1,256,stdin);
-			fflush(stdin);
+			n1[strcspn(n1, "\n")]=0;
 			printf("\nNombre del jugador 2? ");
 			fgets(n2,256,stdin);
-			fflush(stdin);
+			n2[strcspn(n2, "\n")]=0;
 			rellenar();
+			p1=0;
+			p2=0;
 			while(p1<100 && p2<100)
 			{
 				j1();
@@ -100,18 +105,20 @@ void menujug(){
 			getchar();
 		}
 		else if(opc==3){
-			printf("\nNombre del jugador 1? ");
-			fflush(stdin);
+			printf("Nombre del jugador 1? ");
+			getchar();
 			fgets(n1,256,stdin);
-			fflush(stdin);
+			n1[strcspn(n1, "\n")]=0;
 			printf("\nNombre del jugador 2? ");
 			fgets(n2,256,stdin);
-			fflush(stdin);
+			n2[strcspn(n2, "\n")]=0;
 			printf("\nNombre del jugador 3? ");
 			fgets(n3,256,stdin);
-			fflush(stdin);
-
+			n3[strcspn(n3, "\n")]=0;
 			rellenar();
+			p1=0;
+			p2=0;
+			p3=0;
 			while(p1<100 && p2<100 && p3<100)
 			{
 				j1();
@@ -130,22 +137,24 @@ void menujug(){
 			getchar();
 		}
 		else if(opc==4){
-			printf("\nNombre del jugador 1? ");
-			fflush(stdin);
+			printf("Nombre del jugador 1? ");
+			getchar();
 			fgets(n1,256,stdin);
-			fflush(stdin);
+			n1[strcspn(n1, "\n")]=0;
 			printf("\nNombre del jugador 2? ");
 			fgets(n2,256,stdin);
-			fflush(stdin);
+			n2[strcspn(n2, "\n")]=0;
 			printf("\nNombre del jugador 3? ");
 			fgets(n3,256,stdin);
-			fflush(stdin);
+			n3[strcspn(n3, "\n")]=0;
 			printf("\nNombre del jugador 4? ");
 			fgets(n4,256,stdin);
-			fflush(stdin);
-
-
+			n4[strcspn(n4, "\n")]=0;
 			rellenar();
+			p1=0;
+			p2=0;
+			p3=0;
+			p4=0;
 			while(p1<100 && p2<100 && p3<100 && p4<100)
 			{
 				j1();
@@ -155,16 +164,16 @@ void menujug(){
 				rellenar();
 			}
 			if (p1>=100)
-				printf("j1 es el ganador");
+				printf("%s es el ganador",n1);
 
 			if (p2>=100)
-				printf("j2 es el ganador");
+				printf("%s es el ganador",n2);
 
 			if (p3>=100)
-				printf("j3 es el ganador");
+				printf("%s es el ganador",n3);
 
 			if (p4>=100)
-				printf("j4 es el ganador");
+				printf("%s es el ganador",n4);
 			getchar();
 		}
 }
