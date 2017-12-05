@@ -47,7 +47,7 @@ void menuprin(){
 		else if(opc=='3')
 		{
 			find();
-			fflush(stdin);
+			
 		}
 		else if(opc=='4')
 			exit(0);
