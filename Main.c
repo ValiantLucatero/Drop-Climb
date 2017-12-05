@@ -4,6 +4,7 @@
 #include "Usuarios.c"
 
 int j=0, p1=0, p2=0, p3=0, p4=0;
+char n1[256],n2[256],n3[256],n4[256];
 void menuprin();
 void menujug();
 void creditos();
@@ -62,8 +63,11 @@ void menujug(){
 	int opc;
 	printf("\nCuantos jugadores son?\n1.-Solo Mode (Testeo)\n2.-Dos jugadores\n3.-Tres jugadores\n4.-Cuatro jugadores\n");
 	scanf("%d",&opc);
-		if(opc==1)
-		{
+		if(opc==1){
+			printf("\nNombre del jugador 1? ");
+			fflush(stdin);
+			fgets(n1,256,stdin);
+			fflush(stdin);
 			rellenar();
 			while(p1<100)
 			{
@@ -73,8 +77,14 @@ void menujug(){
 			printf("j1 es el ganador\nY tambien el perdedor :(");
 			getchar();
 		}
-		else if(opc==2)
-		{
+		else if(opc==2){
+			printf("\nNombre del jugador 1? ");
+			fflush(stdin);
+			fgets(n1,256,stdin);
+			fflush(stdin);
+			printf("\nNombre del jugador 2? ");
+			fgets(n2,256,stdin);
+			fflush(stdin);
 			rellenar();
 			while(p1<100 && p2<100)
 			{
@@ -89,8 +99,18 @@ void menujug(){
 				printf("j2 es el ganador");
 			getchar();
 		}
-		else if(opc==3)
-		{
+		else if(opc==3){
+			printf("\nNombre del jugador 1? ");
+			fflush(stdin);
+			fgets(n1,256,stdin);
+			fflush(stdin);
+			printf("\nNombre del jugador 2? ");
+			fgets(n2,256,stdin);
+			fflush(stdin);
+			printf("\nNombre del jugador 3? ");
+			fgets(n3,256,stdin);
+			fflush(stdin);
+
 			rellenar();
 			while(p1<100 && p2<100 && p3<100)
 			{
@@ -109,8 +129,22 @@ void menujug(){
 				printf("j3 es el ganador");
 			getchar();
 		}
-		else if(opc==4)
-		{
+		else if(opc==4){
+			printf("\nNombre del jugador 1? ");
+			fflush(stdin);
+			fgets(n1,256,stdin);
+			fflush(stdin);
+			printf("\nNombre del jugador 2? ");
+			fgets(n2,256,stdin);
+			fflush(stdin);
+			printf("\nNombre del jugador 3? ");
+			fgets(n3,256,stdin);
+			fflush(stdin);
+			printf("\nNombre del jugador 4? ");
+			fgets(n4,256,stdin);
+			fflush(stdin);
+
+
 			rellenar();
 			while(p1<100 && p2<100 && p3<100 && p4<100)
 			{
@@ -156,30 +190,30 @@ void rellenar(){
 }
 
 void j1(){
-	printf("\nJugador 1:\n");
+	printf("\n%s: \n",n1);
 	p1=posicion(p1);
 	imprimir(p1);
 
 }
 
 void j2(){
-	printf("\nJugador 2:\n");
+	printf("\n%s: \n",n2);
 	p2=posicion(p2);
 	imprimir(p2);
 }
 
 void j3(){
-	printf("\nJugador 3:\n");
+	printf("\n%s: \n",n3);
 	p3=posicion(p3);
 	imprimir(p3);
 }
 
 void j4(){
+	printf("\n%s: \n",n4);
 	printf("\nJugador 4:\n");
 	p4=posicion(p4);
 	imprimir(p4);
 }
-
 int posicion(int x){
 	int dad=dados();
 	printf("\nPosicion original: %d",x);
@@ -215,6 +249,7 @@ void imprimir(int x){
 
 	getchar();
 }
+
 int serp(int x){
 	if(x==18 || x==22 ||x==36||x==62||x==75||x==78||x==83||x==93||x==96)
 		printf("\nMala suerte, caíste en una serpiente\n");
