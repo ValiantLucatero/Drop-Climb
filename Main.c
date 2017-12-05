@@ -18,6 +18,9 @@ void imprimir(int x);
 void j1(); void j2(); void j3(); void j4();
 int serp(int x);
 int esc(int x);
+void mostrar();
+void ganadorN(char g[256]);
+void perdedorN(char j[256]);
 
 int main()
 {
@@ -93,16 +96,23 @@ void menujug(){
 			p2=0;
 			while(p1<100 && p2<100)
 			{
+				rellenar();
 				j1();
 				j2();
-				rellenar();
+				
 			}
-			if (p1>=100)
-				printf("j1 es el ganador");
+			if (p1>=100){
+				printf("%s es el ganador",n1);
+				ganadorN(n1);
+				perdedorN(n2);
+			}
+				
 
-			if (p2>=100)
-				printf("j2 es el ganador");
-			getchar();
+			if (p2>=100){
+				printf("%s es el ganador",n2);
+				ganadorN(n2);
+				perdedorN(n1);
+			}
 		}
 		else if(opc==3){
 			printf("Nombre del jugador 1? ");
@@ -121,20 +131,33 @@ void menujug(){
 			p3=0;
 			while(p1<100 && p2<100 && p3<100)
 			{
+				rellenar();
 				j1();
 				j2();
 				j3();
-				rellenar();
 			}
-			if (p1>=100)
-				printf("j1 es el ganador");
+			if (p1>=100){
+				printf("%s es el ganador",n1);
+				ganadorN(n1);
+				perdedorN(n2);
+				perdedorN(n3);
+			}
+				
 
-			if (p2>=100)
-				printf("j2 es el ganador");
+			if (p2>=100){
+				printf("%s es el ganador",n2);
+				ganadorN(n2);
+				perdedorN(n1);
+				perdedorN(n3);
+			}
+				
 
-			if (p3>=100)
-				printf("j3 es el ganador");
-			getchar();
+			if (p3>=100){
+				printf("%s es el ganador",n3);
+				ganadorN(n3);
+				perdedorN(n1);
+				perdedorN(n2);
+			}
 		}
 		else if(opc==4){
 			printf("Nombre del jugador 1? ");
@@ -157,24 +180,44 @@ void menujug(){
 			p4=0;
 			while(p1<100 && p2<100 && p3<100 && p4<100)
 			{
+				rellenar();
 				j1();
 				j2();
 				j3();
 				j4();
-				rellenar();
 			}
-			if (p1>=100)
+			if (p1>=100){
 				printf("%s es el ganador",n1);
-
-			if (p2>=100)
+				ganadorN(n1);
+				perdedorN(n2);
+				perdedorN(n3);
+				perdedorN(n4);				
+			}
+			
+			if (p2>=100){
 				printf("%s es el ganador",n2);
-
-			if (p3>=100)
+				ganadorN(n2);
+				perdedorN(n1);
+				perdedorN(n3);
+				perdedorN(n4);	
+			}
+				
+			if (p3>=100){
 				printf("%s es el ganador",n3);
+				ganadorN(n3);
+				perdedorN(n2);
+				perdedorN(n1);
+				perdedorN(n4);	
+			}
+				
 
-			if (p4>=100)
+			if (p4>=100){
 				printf("%s es el ganador",n4);
-			getchar();
+				ganadorN(n4);
+				perdedorN(n2);
+				perdedorN(n3);
+				perdedorN(n1);	
+			}
 		}
 }
 
@@ -227,11 +270,18 @@ int posicion(int x){
 	int dad=dados();
 	printf("\nPosicion original: %d",x);
 	printf("\nDado: %d",dad);
-	printf("\nAhora estas en: %d\n",x+dad);
-	x+=dad;
-	x=serp(x);
-	x=esc(x);
-	return x;
+	if(x+dad>=100){
+		printf("\nAhora estas en: %d\n",x+dad);
+		x=100;
+		return x;
+	}
+	else{
+		printf("\nAhora estas en: %d\n",x+dad);
+		x+=dad;
+		x=serp(x);
+		x=esc(x);
+		return x;		
+	}
 }
 
 void imprimir(int x){
@@ -364,5 +414,42 @@ int esc(int x){
 
 	else
 		return x;
+}
 
+void ganadorN(char g[256]){
+  fflush(stdin);
+  FILE *ap;
+  ap=fopen("usuarios.txt","r");
+  while(!feof(ap)){
+  fscanf(ap,"%s",Us.nom);
+  if(strcmp(g,Us.nom)==1){
+    FILE *ap;
+    ap=fopen("usuarios.txt","at");
+    fputs(g,ap);
+    fprintf(ap," %d %d %d\n",1,0,1);
+    fclose(ap);
+    break;
+    //system("cls");// windows
+    //system("clear"); //unix
+      }
+    }
+}
+  
+void perdedorN(char j[256]){
+    fflush(stdin);
+    FILE *ap;
+    ap=fopen("usuarios.txt","r");
+    while(!feof(ap)){
+    fscanf(ap,"%s",Us.nom);
+    if(strcmp(j,Us.nom)==1){
+      FILE *ap;
+      ap=fopen("usuarios.txt","at");
+      fputs(j,ap);
+      fprintf(ap," %d %d %d\n",0,1,1);
+      fclose(ap);
+      break;
+      //system("cls");// windows
+      //system("clear"); //unix
+        }
+      }
 }
