@@ -172,7 +172,7 @@ int posicion(int x){
 void imprimir(int x){
 	bool band=true;
 	int i, j, n;
-	for(i=0;i<j;i++){
+	
 		n=x;
         int m=0;
         while(n>10){
@@ -192,7 +192,7 @@ void imprimir(int x){
 	        }
 		printf("\n");
 		}
-	}
+	
 	system("pause");
 }
 int serp(int x){
