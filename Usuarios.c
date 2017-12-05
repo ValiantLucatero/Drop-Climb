@@ -43,7 +43,7 @@ void agregar()
   if(strcmp(nomb,Us.nom)==1)
   {
     FILE *ap;
-    ap=fopen("usuarios.txt","r");
+    ap=fopen("usuarios.txt","at");
     fputs(nomb,ap);
     fprintf(ap," %d %d %d\n",0,0,0);
     fclose(ap);
