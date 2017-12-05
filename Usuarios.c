@@ -6,9 +6,9 @@
 struct U
 {
   char nom[30];
-  int JG;
-  int JP;
-  int JJ;
+  int JG=0;
+  int JP=0;
+  int JJ=0;
 };
   struct U Us;
   void agregar();
