@@ -22,22 +22,36 @@ void agregar()
 {
   //system("cls"); //windows
   system("clear"); //unix
-  FILE *ap;
-  ap=fopen("usuarios.txt","at");
-  printf("Dame un nombre para el registro : ");
-  fflush(stdin);
-  for (int i=0;i<1;i++){
-	  //gets(Us.nom); //está en desuso
-    scanf("%s",Us.nom);
-	  fputs(Us.nom,ap);
-	  Us.JJ=0; Us.JG=0;  Us.JP=0;
-	  fprintf(ap," %d %d %d\n",Us.JJ, Us.JG,  Us.JP );
-	  fclose(ap);
+  if(access("usuarios.txt",F_OK)!=-1)
+  {
+    FILE *ap;
+    ap=fopen("usuarios.txt","r");
+    printf("Dame un nombre para el registro: ");
+    fflush(stdin);
+    scanf("%s",nomb);
+    while(!feof(ap))
+    {
+      fscanf(ap,"%s",Us.nom);
+      if(strcmp(nomb,Us.nom)==0)
+      {
+        printf("Nombre ya registrado, selecciona otro\n" );
+        fclose(ap);
+        break;
+      }
+    }
   }
-  printf("\nUsuario Generado con exito!\nPresiona enter para continuar...\n");
-  getchar();
-  //system("cls"); //windows
-  system("clear"); //unix
+  if(strcmp(nomb,Us.nom)==1)
+  {
+    FILE *ap;
+    ap=fopen("usuarios.txt","a");
+    fputs(nomb,ap);
+    fprintf(ap," %d %d %d\n",0,0,0);
+    fclose(ap);
+    printf("\nUsuario Generado con exito!\nPresiona enter para continuar...\n");
+    getchar();
+    //system("cls"); //windows
+    system("clear"); //unix
+  }
 }
 
 void find()
@@ -51,12 +65,11 @@ void find()
   FILE *ap;
   ap=fopen("usuarios.txt","rt");
     printf("A quien buscas :  ");
-    //gets(nomb); //está en desuso
     scanf("%s",nomb);
     fflush(stdin);
     while(!feof(ap))
     {
-      fscanf(ap,"%s",&Us.nom);
+      fscanf(ap,"%s",Us.nom);
       if(strcmp(nomb,Us.nom)==0)
       {
         fscanf(ap,"%d",&Us.JJ);
@@ -64,16 +77,17 @@ void find()
         fscanf(ap,"%d",&Us.JP);
         printf("Hola %s, Tienes Juegos jugados %i, ganados %i, perdidos %i  \n",Us.nom,Us.JJ,Us.JG,Us.JP);
         b=1;
-	       break;
-	      }
+	      break;
+	    }
     }
     if(b==0)
     printf("Usuario no registrado :(\n");
   }
-  if(access("usuarios.txt",F_OK)==-1)
+  else
   {
     printf("No hay ningun usuario registrado :( Presiona enter para continuar...");
   }
   //system("cls"); //windows
   system("clear"); //unix
+  getchar();
 }
