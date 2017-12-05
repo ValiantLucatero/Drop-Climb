@@ -81,7 +81,7 @@ void menujug(){
 				rellenar();
 			}
 			printf("%s es el ganador! Y tambien el perdedor :,(",n1);
-			getchar();
+			ganadorN(n1);
 		}
 		else if(opc==2){
 			printf("Nombre del jugador 1? ");
@@ -271,7 +271,7 @@ int posicion(int x){
 	printf("\nPosicion original: %d",x);
 	printf("\nDado: %d",dad);
 	if(x+dad>=100){
-		printf("\nAhora estas en: %d\n",x+dad);
+		printf("\nAhora estas en: %d\n",100);
 		x=100;
 		return x;
 	}
@@ -417,39 +417,47 @@ int esc(int x){
 }
 
 void ganadorN(char g[256]){
-  fflush(stdin);
-  FILE *ap;
-  ap=fopen("usuarios.txt","r");
-  while(!feof(ap)){
-  fscanf(ap,"%s",Us.nom);
-  if(strcmp(g,Us.nom)==1){
-    FILE *ap;
-    ap=fopen("usuarios.txt","at");
-    fputs(g,ap);
-    fprintf(ap," %d %d %d\n",1,0,1);
-    fclose(ap);
-    break;
-    //system("cls");// windows
-    //system("clear"); //unix
-      }
+  	int b=0;
+  	FILE *ap;
+	ap=fopen("usuarios.txt","w+");
+    while(!feof(ap))
+    {
+      fscanf(ap,"%s",&Us.nom);
+      if(strcmp(g,Us.nom)==0)
+      {
+        fscanf(ap,"%d",&Us.JJ);
+        fscanf(ap,"%d",&Us.JG);
+        fscanf(ap,"%d",&Us.JP);
+        fprintf(ap,"%s %d %d %d\n",g,Us.JJ+1,Us.JG+1,Us.JP);
+        b=1;
+	      break;
+	    }
     }
+    if(b==0){
+    	fprintf(ap,"%s %d %d %d\n",g,1,1,0);
+	}
+  	fclose(ap);
 }
   
 void perdedorN(char j[256]){
-    fflush(stdin);
-    FILE *ap;
-    ap=fopen("usuarios.txt","r");
-    while(!feof(ap)){
-    fscanf(ap,"%s",Us.nom);
-    if(strcmp(j,Us.nom)==1){
-      FILE *ap;
-      ap=fopen("usuarios.txt","at");
-      fputs(j,ap);
-      fprintf(ap," %d %d %d\n",0,1,1);
-      fclose(ap);
-      break;
-      //system("cls");// windows
-      //system("clear"); //unix
-        }
-      }
+    int b=0;
+  	FILE *ap;
+	ap=fopen("usuarios.txt","w+");
+    while(!feof(ap))
+    {
+      fscanf(ap,"%s",&Us.nom);
+      if(strcmp(j,Us.nom)==0)
+      {
+        fscanf(ap,"%d",&Us.JJ);
+        fscanf(ap,"%d",&Us.JG);
+        fscanf(ap,"%d",&Us.JP);
+        fprintf(ap,"%s %d %d %d\n",j,Us.JJ+1,Us.JG,Us.JP+1);
+        b=1;
+	      break;
+	    }
+    }
+    if (b==0){
+    	fprintf(ap,"%s %d %d %d\n",j,1,0,1);
+	}
+  	fclose(ap);
 }
