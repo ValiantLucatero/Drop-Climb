@@ -3,12 +3,17 @@
 #include <time.h>
 #include "Usuarios.c"
 
+int j=0, p1=0, p2=0, p3=0, p4=0;
 void menuprin();
+void menujug();
 void creditos();
 void rellenar();
 void imprimir();
 int dados();
 char tablero[10][10];
+int posicion(int x);
+void imprimir(int x);
+void j1(); void j2(); void j3(); void j4();
 int serp(int x);
 int esc(int x);
 
@@ -38,8 +43,7 @@ void menuprin(){
 		fflush(stdin);
 		if(opc=='1')
 		{
-			rellenar();
-			imprimir();
+			menujug();
 		}
 
 		else if(opc=='2')
@@ -52,6 +56,61 @@ void menuprin(){
 		else if(opc=='4')
 			exit(0);
 	}
+}
+
+void menujug(){
+	int opc;
+	printf("\nCuantos jugadores son?\n1.-Solo Mode (Testeo)\n2.-Dos jugadores\n3.-Tres jugadores\n4.-Cuatro jugadores\n");
+	scanf("%d",&opc);
+		if(opc==1){
+			rellenar();
+			while(p1<100){
+				j1();rellenar();
+			}
+				printf("j1 es el ganador\nY tambien el perdedor :(");
+		}
+		else if(opc==2){
+			rellenar();
+			while(p1<100 && p2<100){
+				j1();j2();rellenar();
+			}
+			if (p1>=100)
+				printf("j1 es el ganador");
+	
+			if (p2>=100)
+				printf("j2 es el ganador");			
+		}
+		else if(opc==3){
+			rellenar();
+			while(p1<100 && p2<100 && p3<100){
+				j1();j2();j3();rellenar();
+			}
+			if (p1>=100)
+				printf("j1 es el ganador");
+	
+			if (p2>=100)
+				printf("j2 es el ganador");			
+			
+			if (p3>=100)
+				printf("j3 es el ganador");
+		}
+		else if(opc==4){
+			rellenar();
+			while(p1<100 && p2<100 && p3<100 && p4<100){
+				j1();j2();j3();j4();rellenar();
+			}
+			if (p1>=100)
+				printf("j1 es el ganador");
+	
+			if (p2>=100)
+				printf("j2 es el ganador");			
+			
+			if (p3>=100)
+				printf("j3 es el ganador");
+			
+			if (p4>=100)
+				printf("j4 es el ganador");
+		}
 }
 
 void creditos(){
@@ -70,59 +129,71 @@ void rellenar(){
             tablero[i][j]=(9-i)*10+j+1;
         }
     }
-	//system("cls"); //windows
-	system("clear"); //unix
+	system("cls");
+	//system("clear");
 }
 
+void j1(){
+	printf("\nJugador 1:\n");
+	p1=posicion(p1);
+	imprimir(p1);
+	
+}
 
+void j2(){
+	printf("\nJugador 2:\n");
+	p2=posicion(p2);
+	imprimir(p2);	
+}
 
-void imprimir(){
-	int band=1;
-	int i, j, n, pos=0;
-	while(band==1)
-	{
-		int dad=dados();
-		printf("\nPosicion original: %d",pos);
-		printf("\nDado: %d\n",dad);
-		pos+=dad;
-		if(pos>=100)
-		{
-			band=0;
-		  printf("\nGanaste!\n");
-    }
-	  else
-		{
-			printf("Estas en %d\n",pos);
-			pos=serp(pos);
-			pos=esc(pos);
-			n=pos;
-			int m=0;
-			while(n>10)
-			{
-			    n-=10;
-			    m++;
-	    }
-	    if(n==0)
-			{
-	        n=9;
-					m++;
-	    }
-      //tablero[9-m][n-1]=35;
-			for(i=0;i<10;i++)
-			{
-        for(j=0;j<10;j++)
-				{
-					if(i==9-m && j==n-1)
+void j3(){
+	printf("\nJugador 3:\n");
+	p3=posicion(p3);
+	imprimir(p3);	
+}
+ 
+void j4(){
+	printf("\nJugador 4:\n");
+	p4=posicion(p4);
+	imprimir(p4);	
+}
+    
+int posicion(int x){
+	int dad=dados();
+	printf("\nPosicion original: %d",x);
+	printf("\nDado: %d",dad);
+	printf("\nAhora estas en: %d\n",x+dad);
+	x+=dad;
+	x=serp(x);
+	x=esc(x);
+	return x;
+}
+
+void imprimir(int x){
+	bool band=true;
+	int i, j, n;
+	for(i=0;i<j;i++){
+		n=x;
+        int m=0;
+        while(n>10){
+            n-=10;
+            m++;
+        }
+        if(n==0){
+            n=9;m++;
+        }
+	    tablero[9-m][n-1]=1;
+		for(i=0;i<10;i++){
+	    	for(j=0;j<10;j++){
+	    		if(i==9-m && j==n-1)
 						printf("\x1b[31m%c\x1b[0m\t",77);
-					else
+				else
         		printf("%d\t",tablero[i][j]);
-				}
-    		printf("\n");
-    	}
+	        }
+		printf("\n");
 		}
-		getchar();
-    rellenar();
 	}
+	system("pause");
 }
 int serp(int x){
 	if(x==18 || x==22 ||x==36||x==62||x==75||x==78||x==83||x==93||x==96)
@@ -167,9 +238,9 @@ int serp(int x){
 		printf("\nAhora estás en 40\n");
 		return 40;
 	}
-	else if (x==93){
+	else if (x==96){
 		printf("\nAhora estás en 69 UwU\n");
-		return 40;
+		return 69;
 	}
 
 	else
