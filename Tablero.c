@@ -23,12 +23,12 @@ int main(){
         pos+=dados();
         if(pos>=100){
             band=0;
-            printf("\n¡Ganaste!");
+            printf("\n�Ganaste!");
         }
 
         else{
 
-        printf("Estás es %d\n",pos);
+        printf("Estas en %d\n",pos);
         n=pos;
         int m=0;
         while(n>10){

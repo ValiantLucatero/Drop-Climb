@@ -20,8 +20,8 @@ struct U
 
 void agregar()
 {
-  //system("cls"); //windows
-  system("clear"); //unix
+  system("cls"); //windows
+  //system("clear"); //unix
   if(access("usuarios.txt",F_OK)!=-1)
   {
     FILE *ap;
@@ -43,22 +43,22 @@ void agregar()
   if(strcmp(nomb,Us.nom)==1)
   {
     FILE *ap;
-    ap=fopen("usuarios.txt","a");
+    ap=fopen("usuarios.txt","r");
     fputs(nomb,ap);
     fprintf(ap," %d %d %d\n",0,0,0);
     fclose(ap);
     printf("\nUsuario Generado con exito!\nPresiona enter para continuar...\n");
     getchar();
-    //system("cls"); //windows
-    system("clear"); //unix
+    system("cls"); //windows
+    //system("clear"); //unix
   }
 }
 
 void find()
 {
   int b=0;
-  //system("cls"); //windows
-  system("clear"); //unix
+  system("cls"); //windows
+  //system("clear"); //unix
   fflush(stdin);
   if(access("usuarios.txt",F_OK)!=-1)
   {
@@ -85,9 +85,10 @@ void find()
   }
   else
   {
-    printf("No hay ningun usuario registrado :( Presiona enter para continuar...");
+    printf("No hay ningun usuario registrado :( \nPresiona enter para continuar...");
   }
-  //system("cls"); //windows
-  system("clear"); //unix
-  getchar();
+   getchar();
+   system("cls"); //windows
+   //system("clear"); //unix
+   fflush(stdin);
 }
