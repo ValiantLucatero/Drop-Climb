@@ -62,54 +62,76 @@ void menujug(){
 	int opc;
 	printf("\nCuantos jugadores son?\n1.-Solo Mode (Testeo)\n2.-Dos jugadores\n3.-Tres jugadores\n4.-Cuatro jugadores\n");
 	scanf("%d",&opc);
-		if(opc==1){
+		if(opc==1)
+		{
 			rellenar();
-			while(p1<100){
-				j1();rellenar();
+			while(p1<100)
+			{
+				j1();
+				rellenar();
 			}
-				printf("j1 es el ganador\nY tambien el perdedor :(");
+			printf("j1 es el ganador\nY tambien el perdedor :(");
+			getchar();
 		}
-		else if(opc==2){
+		else if(opc==2)
+		{
 			rellenar();
-			while(p1<100 && p2<100){
-				j1();j2();rellenar();
+			while(p1<100 && p2<100)
+			{
+				j1();
+				j2();
+				rellenar();
 			}
 			if (p1>=100)
 				printf("j1 es el ganador");
-	
+
 			if (p2>=100)
-				printf("j2 es el ganador");			
+				printf("j2 es el ganador");
+			getchar();
 		}
-		else if(opc==3){
+		else if(opc==3)
+		{
 			rellenar();
-			while(p1<100 && p2<100 && p3<100){
-				j1();j2();j3();rellenar();
+			while(p1<100 && p2<100 && p3<100)
+			{
+				j1();
+				j2();
+				j3();
+				rellenar();
 			}
 			if (p1>=100)
 				printf("j1 es el ganador");
-	
+
 			if (p2>=100)
-				printf("j2 es el ganador");			
-			
+				printf("j2 es el ganador");
+
 			if (p3>=100)
 				printf("j3 es el ganador");
+			getchar();
 		}
-		else if(opc==4){
+		else if(opc==4)
+		{
 			rellenar();
-			while(p1<100 && p2<100 && p3<100 && p4<100){
-				j1();j2();j3();j4();rellenar();
+			while(p1<100 && p2<100 && p3<100 && p4<100)
+			{
+				j1();
+				j2();
+				j3();
+				j4();
+				rellenar();
 			}
 			if (p1>=100)
 				printf("j1 es el ganador");
-	
+
 			if (p2>=100)
-				printf("j2 es el ganador");			
-			
+				printf("j2 es el ganador");
+
 			if (p3>=100)
 				printf("j3 es el ganador");
-			
+
 			if (p4>=100)
 				printf("j4 es el ganador");
+			getchar();
 		}
 }
 
@@ -129,35 +151,35 @@ void rellenar(){
             tablero[i][j]=(9-i)*10+j+1;
         }
     }
-	system("cls");
-	//system("clear");
+	//system("cls");
+	system("clear");
 }
 
 void j1(){
 	printf("\nJugador 1:\n");
 	p1=posicion(p1);
 	imprimir(p1);
-	
+
 }
 
 void j2(){
 	printf("\nJugador 2:\n");
 	p2=posicion(p2);
-	imprimir(p2);	
+	imprimir(p2);
 }
 
 void j3(){
 	printf("\nJugador 3:\n");
 	p3=posicion(p3);
-	imprimir(p3);	
+	imprimir(p3);
 }
- 
+
 void j4(){
 	printf("\nJugador 4:\n");
 	p4=posicion(p4);
-	imprimir(p4);	
+	imprimir(p4);
 }
-    
+
 int posicion(int x){
 	int dad=dados();
 	printf("\nPosicion original: %d",x);
@@ -170,9 +192,7 @@ int posicion(int x){
 }
 
 void imprimir(int x){
-	bool band=true;
 	int i, j, n;
-	
 		n=x;
         int m=0;
         while(n>10){
@@ -192,8 +212,8 @@ void imprimir(int x){
 	        }
 		printf("\n");
 		}
-	
-	system("pause");
+
+	getchar();
 }
 int serp(int x){
 	if(x==18 || x==22 ||x==36||x==62||x==75||x==78||x==83||x==93||x==96)
